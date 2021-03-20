@@ -10,16 +10,16 @@ export const removeNotif = (message) => {
     type: 'REMOVE_NOTIF',
   }
 }
-
-
 const notificationReducer = (state = '', action) => {
   switch (action.type) {
     case 'ADD_NOTIF':
       return action.payload
     case 'REMOVE_NOTIF':
       return ''
+    default:
+      return state
   }
-  return state
+  
 }
 
 export default notificationReducer
