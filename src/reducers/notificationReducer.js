@@ -1,7 +1,23 @@
+export const addNotif = (message) => {
+  return {
+    type: 'ADD_NOTIF',
+    payload: message
+  }
+}
+
+export const removeNotif = (message) => {
+  return {
+    type: 'REMOVE_NOTIF',
+  }
+}
+
+
 const notificationReducer = (state = '', action) => {
-  if (action.type === 'NEW_ANECDOTE') {
-    const message = action.payload;
-    return message; 
+  switch (action.type) {
+    case 'ADD_NOTIF':
+      return action.payload
+    case 'REMOVE_NOTIF':
+      return ''
   }
   return state
 }
