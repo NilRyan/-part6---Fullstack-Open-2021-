@@ -37,7 +37,13 @@ export const createAnecdote = (content) => {
   }
 }
 
-const anecdoteReducer = (state = initialState, action) => {
+export const initializeAnecdotes = (anecdotes) => {
+  return {
+    type: 'INIT_ANECDOTES',
+    data: anecdotes,
+  }
+}
+const anecdoteReducer = (state = [], action) => {
   console.log('state now: ', state)
   console.log('action', action)
   switch(action.type) {
@@ -50,6 +56,9 @@ const anecdoteReducer = (state = initialState, action) => {
     case 'NEW_ANECDOTE':
       const anecdoteObject = asObject(action.payload)
       return [...state, anecdoteObject]
+
+    case 'INIT_ANECDOTES':
+      return action.data
     default:
       return state
   }
