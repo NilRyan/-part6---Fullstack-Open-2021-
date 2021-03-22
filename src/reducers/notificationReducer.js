@@ -1,10 +1,13 @@
-export const setNotif = (message, displayTime = 3000) => {
+let timeoutID;
+
+export const setNotif = (message, displayTime = 5000) => {
   return async dispatch => {
+    clearTimeout(timeoutID)
     dispatch({
       type: 'SET_NOTIF',
       message
     })
-    setTimeout(() => {
+    timeoutID = setTimeout(() => {
       dispatch({
         type: 'REMOVE_NOTIF'
       })
