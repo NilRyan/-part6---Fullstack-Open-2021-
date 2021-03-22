@@ -1,19 +1,20 @@
-export const addNotif = (message) => {
-  return {
-    type: 'ADD_NOTIF',
-    payload: message
+export const setNotif = (message, displayTime = 3000) => {
+  return async dispatch => {
+    dispatch({
+      type: 'SET_NOTIF',
+      message
+    })
+    setTimeout(() => {
+      dispatch({
+        type: 'REMOVE_NOTIF'
+      })
+    }, displayTime)
   }
-}
-
-export const removeNotif = (message) => {
-  return {
-    type: 'REMOVE_NOTIF',
-  }
-}
+} 
 const notificationReducer = (state = '', action) => {
   switch (action.type) {
-    case 'ADD_NOTIF':
-      return action.payload
+    case 'SET_NOTIF':
+      return action.message
     case 'REMOVE_NOTIF':
       return ''
     default:
