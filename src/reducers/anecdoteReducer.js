@@ -2,11 +2,15 @@ import anecdoteService from '../services/anecdotes'
 // action creators
 
 export const vote = (id) => {
-  return {
+  return async dispatch => {
+    await anecdoteService.vote(id)
+    dispatch({
       type: 'VOTE',
       payload: {
         id
       }
+    })
+     
   }
 }
 
